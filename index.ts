@@ -83,9 +83,9 @@ submitInput.addEventListener("click", (e) => {
   if (bookNameinput.value && authorNameinput.value && bookprice.value) {
     const book = new Book(bookNameinput.value, authorNameinput.value, +bookprice.value)
     library.addBook(book);
-    // bookNameinput.value = ''
-    // authorNameinput.value = ''
-    // bookprice.value = ''
+    bookNameinput.value = ''
+    authorNameinput.value = ''
+    bookprice.value = ''
   }
 
 })

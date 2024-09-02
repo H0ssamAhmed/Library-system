@@ -62,9 +62,9 @@ submitInput.addEventListener("click", function (e) {
     if (bookNameinput.value && authorNameinput.value && bookprice.value) {
         var book = new Book(bookNameinput.value, authorNameinput.value, +bookprice.value);
         library.addBook(book);
-        // bookNameinput.value = ''
-        // authorNameinput.value = ''
-        // bookprice.value = ''
+        bookNameinput.value = '';
+        authorNameinput.value = '';
+        bookprice.value = '';
     }
 });
 library.renderBooks();
