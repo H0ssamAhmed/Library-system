@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+
+  main {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #303030;
+    min-height: 100vh;
+  }
+
+  main form {
+    padding-top: 5rem;
+    height: 40vh;
+
+    gap: 40px;
+    flex-direction: column;
+    display: flex;
+  }
+
+  main input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+  }
+
+  main input[type=submit] {
+    cursor: pointer;
+    background-color: orange;
+    color: white;
+    transition: 0.3s;
+  }
+
+  main input[type=submit]:hover {
+    cursor: pointer;
+    background-color: rgb(181, 118, 2);
+  }
+
+  section {
+    width: 80%;
+  }
+
+  h1 {
+    text-align: start;
+    margin-right: auto;
+  }
+
+  .book {
+    display: flex;
+    border-color: transparent black gray transparent;
+    border-width: 1px;
+    gap: 40px;
+    justify-content: space-between;
+    width: 80vw;
+    align-items: center;
+    border-bottom: 1px gray solid;
+  }
+
+
+  .book p {
+    width: 100px;
+    text-align: center;
+    border-width: 0 0 2px 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  .book button {
+    padding: 0;
+    height: fit-content;
+    border-radius: 6px;
+    border: none;
+    padding: 4px;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: red;
+  }
+
+  .book button:hover {
+    background-color: rgb(146, 7, 7);
+    outline: 4px solid lightblue;
+  }
+</style>
+
+<body>
+  <main>
+    <form>
+      <input value="Atomic Habits" type="text" name="bookName" id="book" placeholder="Write Book Name">
+      <input value="James Clear" type="text" name="authorName" id="author" placeholder="Write Auther Name">
+      <input type="submit" value="Submit">
+    </form>
+    <section>
+      <h1>Cuurent Books</h1>
+      <div id="currenBook"></div>
+    </section>
+  </main>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
