@@ -11,12 +11,14 @@
 let bookNameinput = document.querySelector('input[name=bookName]') as HTMLInputElement
 let authorNameinput = document.querySelector('input[name=authorName]') as HTMLInputElement
 let submitInput = document.querySelector('input[type=submit]') as HTMLInputElement
+let bookprice = document.querySelector('input[type=number]') as HTMLInputElement
 
 let currentBooksDiv = document.getElementById("currenBook") as HTMLDivElement
 
 interface Book {
   id: number;
   name: string;
+  price: number;
   author: string;
 }
 class Library {
@@ -40,7 +42,6 @@ class Library {
   }
   remove(id: number): void {
     this.books = this.books.filter(book => book.id !== id)
-    // console.log(this.books);
     localStorage.setItem("books", JSON.stringify(this.books))
     this.renderBooks()
   }
@@ -53,6 +54,7 @@ class Library {
       bookDiv.innerHTML = `
         <p>${book.name}</p>
         <p>${book.author}</p>
+        <p>${book.price} $</p>
         <button onclick="library.remove(${book.id})">Remove</button>
       `;
       currentBooksDiv.appendChild(bookDiv);
@@ -62,13 +64,15 @@ class Library {
 }
 
 class Book {
-  name: string;
-  author: string
   id: number
-  constructor(name: string, author: string) {
+  name: string;
+  price: number;
+  author: string
+  constructor(name: string, author: string, price: number) {
     this.id = Date.now()
     this.name = name
     this.author = author
+    this.price = price
   }
 }
 
@@ -76,11 +80,12 @@ let library = new Library()
 
 submitInput.addEventListener("click", (e) => {
   e.preventDefault();
-  if (bookNameinput.value && authorNameinput.value) {
-    const book = new Book(bookNameinput.value, authorNameinput.value)
+  if (bookNameinput.value && authorNameinput.value && bookprice.value) {
+    const book = new Book(bookNameinput.value, authorNameinput.value, +bookprice.value)
     library.addBook(book);
-    bookNameinput.value = ''
-    authorNameinput.value = ''
+    // bookNameinput.value = ''
+    // authorNameinput.value = ''
+    // bookprice.value = ''
   }
 
 })

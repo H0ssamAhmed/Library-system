@@ -10,6 +10,7 @@
 var bookNameinput = document.querySelector('input[name=bookName]');
 var authorNameinput = document.querySelector('input[name=authorName]');
 var submitInput = document.querySelector('input[type=submit]');
+var bookprice = document.querySelector('input[type=number]');
 var currentBooksDiv = document.getElementById("currenBook");
 var Library = /** @class */ (function () {
     function Library() {
@@ -31,7 +32,6 @@ var Library = /** @class */ (function () {
     };
     Library.prototype.remove = function (id) {
         this.books = this.books.filter(function (book) { return book.id !== id; });
-        // console.log(this.books);
         localStorage.setItem("books", JSON.stringify(this.books));
         this.renderBooks();
     };
@@ -41,28 +41,30 @@ var Library = /** @class */ (function () {
         this.books.forEach(function (book) {
             var bookDiv = document.createElement('div');
             bookDiv.className = 'book';
-            bookDiv.innerHTML = "\n        <p>".concat(book.name, "</p>\n        <p>").concat(book.author, "</p>\n        <button onclick=\"library.remove(").concat(book.id, ")\">Remove</button>\n      ");
+            bookDiv.innerHTML = "\n        <p>".concat(book.name, "</p>\n        <p>").concat(book.author, "</p>\n        <p>").concat(book.price, " $</p>\n        <button onclick=\"library.remove(").concat(book.id, ")\">Remove</button>\n      ");
             currentBooksDiv.appendChild(bookDiv);
         });
     };
     return Library;
 }());
 var Book = /** @class */ (function () {
-    function Book(name, author) {
+    function Book(name, author, price) {
         this.id = Date.now();
         this.name = name;
         this.author = author;
+        this.price = price;
     }
     return Book;
 }());
 var library = new Library();
 submitInput.addEventListener("click", function (e) {
     e.preventDefault();
-    if (bookNameinput.value && authorNameinput.value) {
-        var book = new Book(bookNameinput.value, authorNameinput.value);
+    if (bookNameinput.value && authorNameinput.value && bookprice.value) {
+        var book = new Book(bookNameinput.value, authorNameinput.value, +bookprice.value);
         library.addBook(book);
-        bookNameinput.value = '';
-        authorNameinput.value = '';
+        // bookNameinput.value = ''
+        // authorNameinput.value = ''
+        // bookprice.value = ''
     }
 });
 library.renderBooks();
