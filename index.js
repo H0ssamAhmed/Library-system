@@ -32,6 +32,7 @@ var Library = /** @class */ (function () {
     Library.prototype.remove = function (id) {
         this.books = this.books.filter(function (book) { return book.id !== id; });
         // console.log(this.books);
+        localStorage.setItem("books", JSON.stringify(this.books));
         this.renderBooks();
     };
     Library.prototype.renderBooks = function () {
@@ -60,6 +61,8 @@ submitInput.addEventListener("click", function (e) {
     if (bookNameinput.value && authorNameinput.value) {
         var book = new Book(bookNameinput.value, authorNameinput.value);
         library.addBook(book);
+        bookNameinput.value = '';
+        authorNameinput.value = '';
     }
 });
 library.renderBooks();

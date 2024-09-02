@@ -41,6 +41,7 @@ class Library {
   remove(id: number): void {
     this.books = this.books.filter(book => book.id !== id)
     // console.log(this.books);
+    localStorage.setItem("books", JSON.stringify(this.books))
     this.renderBooks()
   }
   renderBooks(): void {
@@ -78,6 +79,8 @@ submitInput.addEventListener("click", (e) => {
   if (bookNameinput.value && authorNameinput.value) {
     const book = new Book(bookNameinput.value, authorNameinput.value)
     library.addBook(book);
+    bookNameinput.value = ''
+    authorNameinput.value = ''
   }
 
 })
